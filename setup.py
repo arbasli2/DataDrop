@@ -1,9 +1,13 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
 setup(
     name="finally_data_logger",
     version="0.1.0",
     description="A simple data logging server and client.",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     author="arbasli",
     author_email="arbasli2@gmail.com",
     url="https://github.com/arbasli2/FinallyDataLogger",
