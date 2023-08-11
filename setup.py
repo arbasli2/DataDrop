@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 setup(
     name="finally_data_logger",
-    version="0.1.0",
+    version="0.1.1",
     description="A simple data logging server and client.",
     long_description=long_description,
     long_description_content_type="text/markdown",
