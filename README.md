@@ -45,7 +45,7 @@ print(response)
 
 # Fetch data
 criteria = {'name': 'test*'}
-results = logger.get_data(criteria)
+results = logger.get_data(criteria, fetch_blob=True)
 print(results)
 
 
