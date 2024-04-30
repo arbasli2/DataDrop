@@ -5,6 +5,7 @@ import os
 import base64
 import uuid
 import shutil
+import copy
 
 app = Flask(__name__)
 
@@ -91,6 +92,9 @@ def get_data():
             query = current_condition
 
     results = db.search(query)
+    results = copy.deepcopy(
+        results
+    )  # Avoid modifying the original data on the database (in memory part of the db. the orginal file is not modified)
     handle_blobs_in_fetched_data(results, fetch_blob)
     return jsonify(results)
 
@@ -161,6 +165,12 @@ def main():
         "--dir", type=str, default="./data", help="Directory for data storage."
     )
     parser.add_argument(
+        "--host",
+        type=str,
+        default="localhost",
+        help="Host address to run the server on.",
+    )
+    parser.add_argument(
         "--port", type=int, default=5000, help="Port number to run the server on."
     )
 
@@ -172,7 +182,8 @@ def main():
         os.makedirs(BLOB_DIR)
     db = TinyDB(db_path)
 
-    app.run(port=args.port)
+    app.run(host=args.host, port=args.port)
+    # app.run(port=args.port)
 
 
 if __name__ == "__main__":
