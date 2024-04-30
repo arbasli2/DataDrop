@@ -33,7 +33,7 @@ In your Python script:
 import numpy as np
 from finally_data_logger import DataLogger
 
-logger = DataLogger(port=5000)
+logger = DataLogger(port=5000) #  DataLogger(server_url="http://192.168.x.x", port=5000)
 
 # Log some data
 img = np.random.rand(10,10)
