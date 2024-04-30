@@ -22,7 +22,7 @@ pip install FinallyDataLogger
 From the command line:
 
 ```bash
-finally_data_logger_server --port 5000 --dir /path/to/storage/directory
+finallydatalogger --port 5000 --dir /path/to/storage/directory
 ```
 
 ### Using the client
@@ -30,15 +30,18 @@ finally_data_logger_server --port 5000 --dir /path/to/storage/directory
 In your Python script:
 
 ```python
+import numpy as np
 from finally_data_logger import DataLogger
 
 logger = DataLogger(port=5000)
 
 # Log some data
+img = np.random.rand(10,10)
+# a packet of data is stored in the form of a dictionary
 data = {
     "name": "test1",
     "duration": 0.3,
-    "image": your_numpy_image
+    "image": img
 }
 response = logger.log_data(data)
 print(response)
