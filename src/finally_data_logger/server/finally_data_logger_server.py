@@ -20,7 +20,7 @@ def save_blob(base64_data):
     filepath = os.path.join(BLOB_DIR, filename)
     with open(filepath, "wb") as f:
         f.write(binary_data)
-    return filepath
+    return filename
 
 
 def handle_blob_for_dict(data_dict, original_dict=None):
@@ -42,6 +42,7 @@ def handle_blob_for_dict(data_dict, original_dict=None):
 
 def convert_blob_file_to_base64(filepath):
     """Convert blob file to a base64 encoded string."""
+    filepath = os.path.join(BLOB_DIR, filepath)
     with open(filepath, "rb") as f:
         binary_data = f.read()
     return base64.b64encode(binary_data).decode()
@@ -176,7 +177,8 @@ def main():
 
     args = parser.parse_args()
 
-    BLOB_DIR = os.path.join(args.dir, "blobs")
+    BLOB_DIR = os.path.join(os.getcwd(), args.dir, "blobs")
+    print("BLOB_DIR: ", BLOB_DIR)
     db_path = os.path.join(args.dir, "data.json")
     if not os.path.exists(BLOB_DIR):
         os.makedirs(BLOB_DIR)
