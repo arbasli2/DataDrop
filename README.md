@@ -23,6 +23,8 @@ From the command line:
 
 ```bash
 finallydatalogger --port 5000 --dir /path/to/storage/directory
+# to make it visible on the network
+finallydatalogger --host 0.0.0.0 --port 5000 --dir /path/to/storage/directory
 ```
 
 ### Using the client
